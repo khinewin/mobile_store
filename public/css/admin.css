@@ -5,7 +5,7 @@
  */
 
 body {
-  background-color: #fff;
+  background-color: #0d161f;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -28,10 +28,17 @@ body {
   }
 }
 
+.navbar{
+  background: #0d161f;
+}
 .navbar-top-links {
   margin-right: 0;
 }
 
+.navbar-header .navbar-brand {
+  color: #fff;
+  font-size: 20px;
+}
 .navbar-top-links li {
   display: inline-block;
 }
@@ -86,6 +93,9 @@ body {
   left: auto;
 }
 
+.sidebar {
+  background:#0d161f;
+}
 .sidebar .sidebar-nav.navbar-collapse {
   padding-right: 0;
   padding-left: 0;

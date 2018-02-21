@@ -11,70 +11,75 @@
 |
 */
 
-Route::get('/', function () {
-    return view('admin.home');
+Route::get('/', [
+    'uses'=>'AuthController@getLogin',
+    'as'=>'/'
+]);
+
+Route::get('/login',[
+    'uses'=>'AuthController@getLogin',
+    'as'=>'login'
+]);
+Route::post('/login',[
+    'uses'=>'AuthController@postLogin',
+    'as'=>'login'
+]);
+
+
+Route::group(['middleware'=>'myRole:Admin'], function (){
+
+    Route::get('/register',[
+        'uses'=>'AuthController@getRegister',
+        'as'=>'register'
+    ]);
+    Route::post('/register',[
+        'uses'=>'AuthController@postRegister',
+        'as'=>'register'
+    ]);
+
+    Route::get('/employees',[
+        'uses'=>'HomeController@getEmployees',
+        'as'=>'employees'
+    ]);
+    Route::post('/update-user-role',[
+        'uses'=>'HomeController@postUpdateUserRole',
+        'as'=>'update-user-role'
+    ]);
+    Route::post('/post-remove-user',[
+        'uses'=>'HomeController@postRemoveUser',
+        'as'=>'post-remove-user'
+    ]);
+
 });
 
-Route::get('/admin', function () {
-    return view('admin.home');
+
+Route::group(['middleware'=>'auth'], function (){
+    Route::get('/user-image/{file_name}',[
+        'uses'=>'HomeController@getUserImage',
+        'as'=>'user-image'
+    ]);
+    Route::post('/user-image-upload', [
+        'uses'=>'HomeController@postUploadUserImage',
+        'as'=>'user-image.upload'
+    ]);
+    Route::get('profile',[
+       'uses'=>'HomeController@getProfile',
+        'as'=>'profile'
+    ]);
+    Route::get('/error',[
+        'uses'=>'AuthController@getError',
+        'as'=>'error'
+    ]);
+
+    Route::get('/logout',[
+        'uses'=>'AuthController@getLogout',
+        'as'=>'logout'
+    ]);
+    Route::get('/dashboard',[
+        'uses'=>'HomeController@getDashboard',
+        'as'=>'dashboard'
+    ]);
+
+
 });
 
-Route::get('/login', function () {
-    return view('admin.auth.login');
-});
-
-Route::get('/charts', function () {
-    return View::make('admin.charts');
-});
-
-Route::get('/tables', function () {
-    return View::make('admin.table');
-});
-
-Route::get('/forms', function () {
-    return View::make('admin.form');
-});
-
-Route::get('/grid', function () {
-    return View::make('admin.grid');
-});
-
-Route::get('/buttons', function () {
-    return View::make('admin.buttons');
-});
-
-Route::get('/icons', function () {
-    return View::make('admin.icons');
-});
-
-Route::get('/panels', function () {
-    return View::make('admin.panel');
-});
-
-Route::get('/typography', function () {
-    return View::make('admin.typography');
-});
-
-Route::get('/notifications', function () {
-    return View::make('admin.notifications');
-});
-
-Route::get('/blank', function () {
-    return View::make('admin.blank');
-});
-
-Route::get('/documentation', function () {
-    return View::make('admin.documentation');
-});
-
-Route::get('/stats', function() {
-   return View::make('admin.stats');
-});
-
-Route::get('/progressbars', function() {
-    return View::make('admin.progressbars');
-});
-
-Route::get('/collapse', function() {
-    return View::make('admin.collapse');
-});
