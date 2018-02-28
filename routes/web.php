@@ -54,6 +54,69 @@ Route::group(['middleware'=>'myRole:Admin'], function (){
 
 
 Route::group(['middleware'=>'auth'], function (){
+    Route::get('/detail/{id}',[
+        'uses'=>'ReportController@getDetail',
+        'as'=>'detail'
+    ]);
+    Route::get('/print/{id}',[
+        'uses'=>'ReportController@getPrint',
+        'as'=>'print'
+    ]);
+    Route::get('/search-by-date',[
+        'uses'=>'ReportController@getSearchByDate',
+        'as'=>'search-by-date'
+    ]);
+    Route::get('/report',[
+        'uses'=>'ReportController@getReport',
+        'as'=>'report'
+    ]);
+    Route::post('/checkout',[
+        'uses'=>'CartController@postCheckout',
+        'as'=>'checkout'
+    ]);
+    Route::post('/edit-payment',[
+        'uses'=>'CartController@postEditPayment',
+        'as'=>'edit_payment'
+    ]);
+
+    Route::get('/remove/item/{id}',[
+        'uses'=>'CartController@getRemoveItem',
+        'as'=>'remove.item'
+    ]);
+
+    Route::post('/add-to-cart',[
+        'uses'=>'CartController@postAddToCart',
+        'as'=>'add_to_cart'
+    ]);
+    Route::get('/sale',[
+        'uses'=>'CartController@getSale',
+        'as'=>'sale'
+    ]);
+    Route::post('/barcode',[
+        'uses'=>'ProductController@getBarcode',
+        'as'=>'get-barcode'
+    ]);
+    Route::get('/products',[
+        'uses'=>'ProductController@getProducts',
+        'as'=>'products'
+    ]);
+    Route::post('/new-product',[
+        'uses'=>'ProductController@postNewProduct',
+        'as'=>'new-product'
+    ]);
+    Route::get('/new-product',[
+        'uses'=>'ProductController@getNewProduct',
+        'as'=>'new-product'
+    ]);
+    Route::post('/new-cat',[
+        'uses'=>'ProductController@postNewCat',
+        'as'=>'new_cat'
+    ]);
+    Route::get('/categories',[
+
+        'uses'=>'ProductController@getCategory',
+        'as'=>'categories'
+    ]);
     Route::get('/user-image/{file_name}',[
         'uses'=>'HomeController@getUserImage',
         'as'=>'user-image'
